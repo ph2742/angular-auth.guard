@@ -1,1 +1,5 @@
-# angular-auth.guard
+# petclub-backoffice
+
+`npm install`
+
+`ng serve --open`

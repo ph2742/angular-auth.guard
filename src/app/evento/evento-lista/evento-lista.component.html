@@ -1,0 +1,52 @@
+<h4 class="d-flex justify-content-between align-items-center w-100 font-weight-bold py-3 mb-4">
+        <div>Eventos</div>
+        <button type="button" (click)="newEvento()" class="btn btn-primary btn-round d-block"><span class="ion ion-md-add"></span>&nbsp;
+            Criar Evento</button>
+    </h4>
+
+<ul class="nav bg-lighter container-p-x py-1 container-m--x mb-4">
+  <li *ngFor="let status of dropdownListStatus" class="nav-item">
+    <a [ngClass]="status.code" href="javascript:void(0)" (click)="setFilter(status)">{{ status.itemName }}</a>
+  </li>
+</ul>
+
+    <div class="row">
+        <div *ngFor="let evento of data" class="col-sm-6 col-xl-4">
+
+            <div class="card mb-4">
+                <div class="w-100" (click)="editEvento(evento)">
+                    <a href="javascript:void(0)" class="card-img-top d-block ui-rect-60 ui-bg-cover"
+                        [style.backgroundImage]="'url('+ evento.urlLogo +')'">
+                        <div class="d-flex justify-content-between align-items-end ui-rect-content p-3">
+                            <div class="flex-shrink-1">
+                                <span *ngFor="let tag of evento.tags" class="badge badge-primary mr-1">{{tag.nome}}</span>
+                            </div>
+                            <div class="text-big">
+                                <div class="badge badge-dark font-weight-bold">{{evento.preco ? formatPrice(evento.preco) :
+                                    'GRÁTIS'}}</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <h5 class="mb-3" (click)="editEvento(evento)"><a href="javascript:void(0)" class="text-dark">{{evento.nome}}</a></h5>
+                    <p class="text-muted mb-3" innerHtml="{{ firstCharacters(stripImages(evento.descricao), 200) }}"></p>
+                    <div class="media">
+                        <div class="text-muted small">
+                            <i class="ion ion-md-time text-primary"></i>
+                            <span>{{evento.getDescriptionValidate()}}</span>
+
+                            <i class="ion ion-md-close text-danger cursor-pointer deleteIcon" (click)="deleteEvento(evento)"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <hr class="border-light mt-2 mb-4">
+
+<ngb-pagination [collectionSize]="config.totalItems" [pageSize]="config.itemsPerPage" [(page)]="config.currentPage"
+  [maxSize]="config.totalPage" (pageChange)="getPage($event)" class="d-flex justify-content-center">
+</ngb-pagination>

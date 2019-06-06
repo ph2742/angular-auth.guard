@@ -1,0 +1,33 @@
+<h4 class="d-flex justify-content-between align-items-center w-100 font-weight-bold py-3 mb-4">
+    <div>Notícias</div>
+    <button type="button" (click)="newNoticia()" class="btn btn-primary btn-round d-block">
+        <span class="ion ion-md-add"></span>
+        &nbsp; Criar notícia
+    </button>
+</h4>
+
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col">
+                <input
+                    #search
+                    class="form-control form-control-sm d-inline-block w-auto float-sm-right"
+                    type="text"
+                    id="filtroAvancado"
+                    (keyup)="onSearch(search.value)"
+                    placeholder="Digite sua pesquisa...">
+            </div>
+        </div>
+    </div>
+
+    <hr class="border-light m-0">
+    <div class="table-responsive">
+        <ng2-smart-table
+            [settings]="settings"
+            [source]="dataConv"
+            (delete)="deleteNoticia($event)"
+            (edit)="editNoticia($event)">
+        </ng2-smart-table>
+    </div>
+</div>

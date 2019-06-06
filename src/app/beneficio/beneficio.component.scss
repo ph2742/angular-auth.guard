@@ -1,0 +1,15 @@
+:host /deep/ .ql-container.ql-snow {
+    height: 400px;
+  }
+
+  // Turn on styles encapsulation
+  $ngx-chips-encapsulated: true;
+  @import '~vendor/libs/ngx-chips/ngx-chips.scss';
+
+
+  .deleteIcon {
+  position: absolute;
+  right: 20px;
+  bottom: 25px;
+  margin: 0;
+}

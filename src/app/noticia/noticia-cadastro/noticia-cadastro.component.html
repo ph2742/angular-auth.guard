@@ -1,0 +1,124 @@
+<h4 class="d-flex justify-content-between w-100 font-weight-bold py-3 mb-4">
+  <div>
+    <span class="text-muted font-weight-light">Notícias /</span> {{ noticia.titulo }}
+  </div>
+  <div>
+    <fa-icon [icon]="noticia.isFavorito ? ['fas','star'] : ['far','star']" size="lg" style="color: gold;"
+      (click)="onClickFavorito()"> Star </fa-icon>
+  </div>
+</h4>
+
+<div class="card">
+  <h6 class="card-header">
+    Dados Cadastrais
+  </h6>
+  <div class="card-body pb-2">
+
+    <div class="form-group">
+      <label class="form-label">Nome do Notícia</label>
+      <input [ngModelOptions]="{standalone: true}" [(ngModel)]="noticia.titulo" type="text" class="form-control" placeholder="Informe o título da notícia">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Tags</label>
+      <tag-input [ngModel]="selectedItemTag" (onAdd)="onItemCreateTag($event)" (onRemove)="onItemRemoveTag($event)">
+      </tag-input>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label class="form-label">Categoria</label>
+        <angular2-multiselect class="custom-select" [data]="dropdownListCategoria" [(ngModel)]="selectedItemCategoria"
+          [ngModelOptions]="{standalone: true}" (onSelect)="onItemSelectCategoria($event)"
+          [settings]="dropdownSettingsCategoria">
+        </angular2-multiselect>
+      </div>
+
+      <div class="form-group col-md-6">
+        <label class="form-label">Status</label>
+        <angular2-multiselect id="status" [data]="dropdownListStatus" [(ngModel)]="selectedItemStatus"
+          [ngModelOptions]="{standalone: true}" (onSelect)="onItemSelectStatus($event)"
+          [settings]="dropdownSettingsStatus">
+        </angular2-multiselect>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Resumo</label>
+      <input [ngModelOptions]="{standalone: true}" [(ngModel)]="noticia.resumo" type="text" class="form-control" maxlength="200" placeholder="Informe o resumo">
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Descrição</label>
+      <quill-editor [(ngModel)]="noticia.descricaoNoticia" placeholder="Informe a descrição">
+        <div quill-editor-toolbar>
+          <span class="ql-formats">
+            <select class="ql-font"></select>
+            <select class="ql-size"></select>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-bold"></button>
+            <button class="ql-italic"></button>
+            <button class="ql-underline"></button>
+            <button class="ql-strike"></button>
+          </span>
+          <span class="ql-formats">
+            <select class="ql-color"></select>
+            <select class="ql-background"></select>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-script" value="sub"></button>
+            <button class="ql-script" value="super"></button>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-header" value="1"></button>
+            <button class="ql-header" value="2"></button>
+            <button class="ql-blockquote"></button>
+            <button class="ql-code-block"></button>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-list" value="ordered"></button>
+            <button class="ql-list" value="bullet"></button>
+            <button class="ql-indent" value="-1"></button>
+            <button class="ql-indent" value="+1"></button>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-direction" value="rtl"></button>
+            <select class="ql-align"></select>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-link"></button>
+            <button class="ql-image"></button>
+            <button class="ql-video"></button>
+          </span>
+          <span class="ql-formats">
+            <button class="ql-clean"></button>
+          </span>
+        </div>
+      </quill-editor>
+    </div>
+
+    <div class="form-group media" style="min-height:1px">
+      <div class="ui-bg-cover" style="width: 100px;height: 100px;"
+        [style.backgroundImage]="'url('+ noticia.urlLogo +')'"></div>
+      <div class="media-body ml-3">
+        <label class="form-label">
+          Foto de Capa:
+        </label>
+        <!-- <a href="javascript:void(0)" class="d-block">http://example.com/path/to/image/</a> -->
+        <label class="custom-file mt-3">
+          <input #inputFile id="selecaoArquivo" class="custom-file-input" type="file" (change)="onFileChange($event)"
+            multiple="false" />
+          <span class="custom-file-label"></span>
+        </label>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="card-footer">
+    <div class="text-center">
+      <button type="button" (click)="save()" class="btn btn-primary">Salvar</button>&nbsp;
+    </div>
+  </div>
+</div>

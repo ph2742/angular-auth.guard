@@ -1,0 +1,36 @@
+:host /deep/ .ql-container.ql-snow {
+    height: 400px;
+}
+  
+.buttonInside{
+  position:relative;
+  margin-bottom:0px;
+}
+
+.button-input{
+  position:absolute;
+  right: 4px;
+  top: 7px;
+  border:none;
+  outline:none;
+  text-align:center;
+  font-weight:bold;
+  padding:2px;
+}
+
+.input-search{
+  border: none;
+  width: 87%; 
+  height: 100%;
+  outline: none;
+  margin-top: 7px;
+}
+
+.button-input:hover{
+  cursor:pointer;
+}
+
+// Turn on styles encapsulation
+$ngx-chips-encapsulated: true;
+@import '~vendor/libs/ngx-chips/ngx-chips.scss';
+  

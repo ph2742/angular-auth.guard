@@ -1,0 +1,11 @@
+<sidenav [orientation]="orientation" [ngClass]="getClasses()">
+    <div class="sidenav-inner" [ngClass]="{ 'py-1': orientation !== 'horizontal' }">
+
+        <sidenav-router-link icon="ion ion-ios-contact" route="/" [active]="isActive('/')">Home</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-desktop" route="/noticia" [active]="isActive('/noticia')">Noticia</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-desktop" route="/empresa" [active]="isActive('/empresa')">Empresa</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-desktop" route="/evento" [active]="isActive('/evento')">Evento</sidenav-router-link>
+        <sidenav-router-link icon="ion ion-md-desktop" route="/beneficio" [active]="isActive('/beneficio')">Beneficio</sidenav-router-link>
+
+    </div>
+</sidenav>
